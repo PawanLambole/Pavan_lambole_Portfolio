@@ -210,7 +210,7 @@ const Contact = () => {
             <div className="mt-8 p-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white">
               <h4 className="text-lg font-bold mb-2">Quick Response</h4>
               <p className="text-sm opacity-90">
-                I typically respond within 24 hours. For urgent matters, please reach out via email.
+                I typically respond within 24 hours. Please reach out via email.
               </p>
             </div>
           </motion.div>
