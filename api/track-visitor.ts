@@ -2,6 +2,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 interface VisitorData {
+  name?: string;
   timestamp: string;
   userAgent: string;
   screenResolution: string;
@@ -51,8 +52,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   <div class="container">
     <div class="header">
       <h2>🎉 New Visitor on Your Portfolio!</h2>
+      ${visitorData.name ? `<h3 style="margin-top: 10px; font-size: 18px;">👤 ${visitorData.name}</h3>` : ''}
     </div>
     <div class="content">
+      ${visitorData.name ? `
+      <div class="info-row">
+        <span class="label">👤 Name:</span>
+        <span class="value">${visitorData.name}</span>
+      </div>
+      ` : ''}
       <div class="info-row">
         <span class="label">⏰ Time:</span>
         <span class="value">${new Date(visitorData.timestamp).toLocaleString('en-US', {
@@ -98,10 +106,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 </html>
     `;
 
-    // Send email using Resend (recommended) or nodemailer
-    // You'll need to set up RESEND_API_KEY in Vercel environment variables
-    const RESEND_API_KEY = process.env.RESEND_API_KEY;
-    const YOUR_EMAIL = process.env.NOTIFICATION_EMAIL || 'your-email@gmail.com';
+    // Send email using Resend
+    const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_Lcg9jHFM_MYYkmquaFN7XeqxWArji6GxK';
+    const YOUR_EMAIL = process.env.NOTIFICATION_EMAIL || 'pavanlambole578@gmail.com';
 
     if (RESEND_API_KEY) {
       await fetch('https://api.resend.com/emails', {
@@ -113,7 +120,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         body: JSON.stringify({
           from: 'Portfolio Tracker <onboarding@resend.dev>',
           to: [YOUR_EMAIL],
-          subject: `🎯 New Visitor from ${location} - ${new Date(visitorData.timestamp).toLocaleString()}`,
+          subject: `🎯 ${visitorData.name ? visitorData.name + ' visited' : 'New Visitor'} from ${location} - ${new Date(visitorData.timestamp).toLocaleString()}`,
           html: emailContent,
         }),
       });
