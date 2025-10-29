@@ -35,8 +35,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden relative">
-      {/* Site-wide starfield overlay above section backgrounds, below feel with screen blend */}
-      <StarBackground position="fixed" opacity={0.35} zIndex={5} blendMode="screen" />
+      {/* Site-wide starfield with meteors - theme adaptive */}
+      <StarBackground 
+        position="fixed" 
+        opacity={isDark ? 0.7 : 0.45} 
+        zIndex={5} 
+        blendMode="screen"
+        isDark={isDark}
+      />
       <div className="relative">
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
         <Hero />

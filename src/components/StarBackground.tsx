@@ -5,9 +5,16 @@ type StarBackgroundProps = {
   opacity?: number;
   zIndex?: number;
   blendMode?: React.CSSProperties['mixBlendMode'];
+  isDark?: boolean;
 };
 
-const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1, blendMode = 'normal' }: StarBackgroundProps) => {
+const StarBackground = ({ 
+  position = 'fixed', 
+  opacity = 0.7, 
+  zIndex = 1, 
+  blendMode = 'screen',
+  isDark = true 
+}: StarBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -55,16 +62,31 @@ const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1, blendMo
       '200,170,255' // faint purple
     ];
 
+    // Meteor properties
+    interface Meteor {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      length: number;
+      opacity: number;
+      life: number;
+      maxLife: number;
+      color: string;
+    }
+    
+    const meteors: Meteor[] = [];
+
     const makeStars = () => {
       stars.length = 0;
       const area = window.innerWidth * window.innerHeight;
-      // density tuned for visibility but performance-friendly
-      const density = 0.00020; // stars per px
+      // Increased density for better visibility
+      const density = isDark ? 0.00035 : 0.00025;
       const total = Math.floor(area * density);
       for (let i = 0; i < total; i++) {
-        const depth = Math.random(); // 0 near, 1 far (we'll invert for speed)
-        const size = 0.6 + (1 - depth) * 2.0; // nearer looks bigger
-        const speed = 0.05 + (1 - depth) * 0.3; // nearer moves faster
+        const depth = Math.random();
+        const size = 0.8 + (1 - depth) * 2.5; // Larger stars
+        const speed = 0.08 + (1 - depth) * 0.4;
         const color = palette[(Math.random() * palette.length) | 0];
         stars.push({
           x: Math.random() * window.innerWidth,
@@ -72,8 +94,8 @@ const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1, blendMo
           radius: size,
           vx: (Math.random() - 0.5) * speed,
           vy: (Math.random() - 0.5) * speed,
-          baseAlpha: 0.35 + Math.random() * 0.45,
-          twinkleAmp: 0.15 + Math.random() * 0.35,
+          baseAlpha: isDark ? 0.5 + Math.random() * 0.5 : 0.3 + Math.random() * 0.4,
+          twinkleAmp: 0.2 + Math.random() * 0.4,
           twinkleSpeed: 0.5 + Math.random() * 1.5,
           twinklePhase: Math.random() * Math.PI * 2,
           color,
@@ -82,6 +104,24 @@ const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1, blendMo
       }
     };
     makeStars();
+    
+    // Spawn meteors occasionally
+    const spawnMeteor = () => {
+      if (meteors.length < 3 && Math.random() < 0.015) {
+        const meteorColors = ['255,255,255', '173,216,255', '255,230,150'];
+        meteors.push({
+          x: window.innerWidth * (0.7 + Math.random() * 0.3),
+          y: -50,
+          vx: -(3 + Math.random() * 4),
+          vy: 2 + Math.random() * 3,
+          length: 40 + Math.random() * 60,
+          opacity: 0.8 + Math.random() * 0.2,
+          life: 0,
+          maxLife: 1.5 + Math.random() * 1.5,
+          color: meteorColors[(Math.random() * meteorColors.length) | 0]
+        });
+      }
+    };
 
     // Rebuild stars after resize so density matches area
     const handleResize = () => {
@@ -98,7 +138,11 @@ const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1, blendMo
       last = now;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Try to spawn meteors
+      spawnMeteor();
 
+      // Draw and update stars
       stars.forEach((star) => {
         // Update position with delta time
         star.x += star.vx * (60 * dt);
@@ -129,6 +173,54 @@ const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1, blendMo
         ctx.arc(gx, gy, r * 1.2, 0, Math.PI * 2);
         ctx.fill();
       });
+      
+      // Draw and update meteors
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const m = meteors[i];
+        m.x += m.vx * (60 * dt);
+        m.y += m.vy * (60 * dt);
+        m.life += dt;
+        
+        // Remove if off-screen or expired
+        if (m.x < -200 || m.y > window.innerHeight + 100 || m.life > m.maxLife) {
+          meteors.splice(i, 1);
+          continue;
+        }
+        
+        // Fade out towards end of life
+        const fadeAlpha = m.life < m.maxLife * 0.2 
+          ? m.life / (m.maxLife * 0.2) 
+          : m.life > m.maxLife * 0.8 
+            ? 1 - ((m.life - m.maxLife * 0.8) / (m.maxLife * 0.2))
+            : 1;
+        const alpha = m.opacity * fadeAlpha;
+        
+        // Draw meteor trail with gradient
+        const tailLength = m.length;
+        const angle = Math.atan2(m.vy, m.vx);
+        const endX = m.x - Math.cos(angle) * tailLength;
+        const endY = m.y - Math.sin(angle) * tailLength;
+        
+        // Glow
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = `rgba(${m.color}, ${alpha * 0.8})`;
+        
+        const grad = ctx.createLinearGradient(m.x, m.y, endX, endY);
+        grad.addColorStop(0, `rgba(${m.color}, ${alpha})`);
+        grad.addColorStop(0.5, `rgba(${m.color}, ${alpha * 0.5})`);
+        grad.addColorStop(1, `rgba(${m.color}, 0)`);
+        
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+        
+        // Reset shadow
+        ctx.shadowBlur = 0;
+      }
 
       requestAnimationFrame(animate);
     };
