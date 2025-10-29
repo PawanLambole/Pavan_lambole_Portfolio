@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "framework": "vite",
   "functions": {
     "api/**/*.ts": {
       "runtime": "@vercel/node@3.0.0"
