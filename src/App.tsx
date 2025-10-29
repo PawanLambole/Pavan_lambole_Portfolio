@@ -35,9 +35,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden relative">
-      {/* Site-wide starfield background */}
-      <StarBackground position="fixed" opacity={0.6} zIndex={1} />
-      <div className="relative" style={{ zIndex: 10 }}>
+      {/* Site-wide starfield overlay above section backgrounds, below feel with screen blend */}
+      <StarBackground position="fixed" opacity={0.35} zIndex={5} blendMode="screen" />
+      <div className="relative">
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
         <Hero />
         <About />

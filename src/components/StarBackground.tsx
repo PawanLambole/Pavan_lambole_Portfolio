@@ -4,9 +4,10 @@ type StarBackgroundProps = {
   position?: 'fixed' | 'absolute';
   opacity?: number;
   zIndex?: number;
+  blendMode?: React.CSSProperties['mixBlendMode'];
 };
 
-const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1 }: StarBackgroundProps) => {
+const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1, blendMode = 'normal' }: StarBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -143,7 +144,7 @@ const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1 }: StarB
     <canvas
       ref={canvasRef}
       className={`${position} top-0 left-0 w-full h-full pointer-events-none`}
-      style={{ zIndex, opacity }}
+      style={{ zIndex, opacity, mixBlendMode: blendMode }}
     />
   );
 };
