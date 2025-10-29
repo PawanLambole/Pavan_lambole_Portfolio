@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Download } from 'lucide-react';
-import profileImage from '../assets/1000190228.jpg';
 
 const About = () => {
   const handleDownloadCV = () => {
@@ -24,32 +23,14 @@ const About = () => {
               About <span className="bg-gradient-to-r from-indian-saffron to-indian-green bg-clip-text text-transparent">Me</span>
             </h2>
             <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green mx-auto rounded-full"></div>
-          </motion.div>        <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+          </motion.div>
+          
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex justify-center"
-          >
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative">
-                <img
-                  src={profileImage}
-                  alt="Pavan Lambole"
-                  className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-2xl"
-                />
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-6"
+            className="space-y-6 max-w-4xl mx-auto"
           >
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
               Passionate Computer Engineering Student
@@ -73,7 +54,7 @@ const About = () => {
               Chair at ACM Student Chapter or exploring robotics at e-Yantra Robotics Club.
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4 justify-center">
               <motion.button
                 onClick={handleDownloadCV}
                 whileHover={{ scale: 1.05 }}
@@ -102,7 +83,6 @@ const About = () => {
               </motion.button>
             </div>
           </motion.div>
-        </div>
       </div>
     </section>
   );

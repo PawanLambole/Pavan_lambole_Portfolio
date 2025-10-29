@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import profileImage from '../assets/1000190228.jpg';
 
 const Hero = () => {
   const scrollToAbout = () => {
@@ -26,77 +27,100 @@ const Hero = () => {
         <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-blue-400/20 to-cyan-400/20 dark:from-blue-600/10 dark:to-cyan-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      <div className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-4"
-          >
-            Hi, I'm
-          </motion.h2>
-
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 px-4 break-words"
-          >
-            <span className="bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-              Pavan Lambole
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 font-light px-2"
-          >
-            Developer | Innovator | Tech Explorer
-          </motion.p>
-
+      <div className="relative z-10 px-4 w-full max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+          {/* Profile Image Section */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex-shrink-0 order-1 md:order-1"
           >
-            <button
-              onClick={() => {
-                const element = document.getElementById('contact');
-                if (element) {
-                  const navbarHeight = 64;
-                  const elementPosition = element.getBoundingClientRect().top;
-                  const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-                  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                }
-              }}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-indian-saffron to-indian-orange text-white rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 text-sm sm:text-base"
-            >
-              Get In Touch
-            </button>
-            <button
-              onClick={() => {
-                const element = document.getElementById('projects');
-                if (element) {
-                  const navbarHeight = 64;
-                  const elementPosition = element.getBoundingClientRect().top;
-                  const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-                  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                }
-              }}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-indian-green dark:border-indian-green text-indian-green dark:text-indian-green rounded-lg font-medium hover:bg-indian-green hover:text-white dark:hover:bg-indian-green dark:hover:text-white transition-all duration-300 text-sm sm:text-base"
-            >
-              View Projects
-            </button>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative">
+                <img
+                  src={profileImage}
+                  alt="Pavan Lambole"
+                  className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-2xl"
+                />
+              </div>
+            </div>
           </motion.div>
-        </motion.div>
+
+          {/* Text Content Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 text-center md:text-left order-2 md:order-2"
+          >
+            <motion.h2
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-4"
+            >
+              Hi, I'm
+            </motion.h2>
+
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 break-words"
+            >
+              <span className="bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+                Pavan Lambole
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 font-light"
+            >
+              Developer | Innovator | Tech Explorer
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start"
+            >
+              <button
+                onClick={() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    const navbarHeight = 64;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }}
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-indian-saffron to-indian-orange text-white rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+              >
+                Get In Touch
+              </button>
+              <button
+                onClick={() => {
+                  const element = document.getElementById('projects');
+                  if (element) {
+                    const navbarHeight = 64;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }}
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-indian-green dark:border-indian-green text-indian-green dark:text-indian-green rounded-lg font-medium hover:bg-indian-green hover:text-white dark:hover:bg-indian-green dark:hover:text-white transition-all duration-300 text-sm sm:text-base"
+              >
+                View Projects
+              </button>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
 
       <motion.button
