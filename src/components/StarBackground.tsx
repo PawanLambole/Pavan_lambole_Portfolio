@@ -27,21 +27,32 @@ const StarBackground = () => {
       vy: number;
       opacity: number;
       fadeDirection: number;
+      color: string;
     }
 
     const stars: Star[] = [];
-    const starCount = 200;
+    // Increase star count for visibility
+    const starCount = 350;
+    const palette = [
+      '255, 255, 255', // white
+      '255, 153, 51', // saffron/orange
+      '66, 133, 244', // light blue
+      '19, 136, 8' // light green-ish
+    ];
 
     // Create stars
     for (let i = 0; i < starCount; i++) {
+      const radius = Math.random() * 3 + 1.2; // larger stars
+      const color = palette[Math.floor(Math.random() * palette.length)];
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 1,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        radius,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
         opacity: Math.random() * 0.5 + 0.5,
         fadeDirection: Math.random() > 0.5 ? 1 : -1,
+        color
       });
     }
 
@@ -66,18 +77,18 @@ const StarBackground = () => {
           star.fadeDirection *= -1;
         }
 
-        // Draw star with glow effect
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        
-        // Add glow
-        const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 2);
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
-        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${star.opacity * 0.5})`);
-        gradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
-        
-        ctx.fillStyle = gradient;
-        ctx.fill();
+  // Draw star with glow effect and color
+  ctx.beginPath();
+  ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+
+  // Add colored glow
+  const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 3);
+  gradient.addColorStop(0, `rgba(${star.color}, ${Math.min(1, star.opacity)})`);
+  gradient.addColorStop(0.4, `rgba(${star.color}, ${Math.min(0.6, star.opacity * 0.6)})`);
+  gradient.addColorStop(1, `rgba(${star.color}, 0)`);
+
+  ctx.fillStyle = gradient;
+  ctx.fill();
       });
 
       requestAnimationFrame(animate);
