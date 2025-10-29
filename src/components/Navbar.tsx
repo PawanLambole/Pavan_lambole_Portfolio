@@ -127,18 +127,23 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left px-4 py-2 rounded-lg transition-colors ${
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    scrollToSection(item.id);
+                  }}
+                  className={`block w-full text-left px-4 py-2 rounded-lg transition-colors cursor-pointer ${
                     activeSection === item.id
-                      ? 'bg-orange-50 dark:bg-gray-800 text-indian-saffron dark:text-indian-green'
+                      ? 'bg-orange-50 dark:bg-gray-800 text-indian-saffron dark:text-indian-green font-semibold'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
                   }`}
+                  type="button"
                 >
                   {item.label}
                 </button>
