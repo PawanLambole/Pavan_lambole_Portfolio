@@ -76,9 +76,9 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-indian-saffron via-white to-indian-green bg-clip-text text-transparent"
+            className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-indian-saffron via-white to-indian-green bg-clip-text text-transparent"
           >
-            PL
+            Pavan Lambole
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
