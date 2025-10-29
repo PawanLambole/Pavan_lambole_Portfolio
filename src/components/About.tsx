@@ -85,7 +85,15 @@ const About = () => {
               </motion.button>
 
               <motion.button
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    const navbarHeight = 64;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto px-6 py-3 border-2 border-indian-green dark:border-indian-green text-indian-green dark:text-indian-green rounded-lg font-medium hover:bg-indian-green hover:text-white dark:hover:bg-indian-green dark:hover:text-white transition-all duration-300 text-sm sm:text-base"

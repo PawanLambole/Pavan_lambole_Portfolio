@@ -3,7 +3,17 @@ import { ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById('about');
+    if (element) {
+      const navbarHeight = 64;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
@@ -58,13 +68,29 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
           >
             <button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                const element = document.getElementById('contact');
+                if (element) {
+                  const navbarHeight = 64;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+              }}
               className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-indian-saffron to-indian-orange text-white rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 text-sm sm:text-base"
             >
               Get In Touch
             </button>
             <button
-              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                const element = document.getElementById('projects');
+                if (element) {
+                  const navbarHeight = 64;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+              }}
               className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-indian-green dark:border-indian-green text-indian-green dark:text-indian-green rounded-lg font-medium hover:bg-indian-green hover:text-white dark:hover:bg-indian-green dark:hover:text-white transition-all duration-300 text-sm sm:text-base"
             >
               View Projects
