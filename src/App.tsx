@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden relative">
       <StarBackground />
-      <div className="relative z-10">
+      <div className="relative" style={{ zIndex: 10 }}>
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
         <Hero />
         <About />

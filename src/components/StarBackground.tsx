@@ -30,17 +30,17 @@ const StarBackground = () => {
     }
 
     const stars: Star[] = [];
-    const starCount = 150;
+    const starCount = 200;
 
     // Create stars
     for (let i = 0; i < starCount; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5 + 0.5,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        opacity: Math.random(),
+        radius: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.5,
         fadeDirection: Math.random() > 0.5 ? 1 : -1,
       });
     }
@@ -61,15 +61,22 @@ const StarBackground = () => {
         if (star.y > canvas.height) star.y = 0;
 
         // Update opacity for twinkling effect
-        star.opacity += star.fadeDirection * 0.01;
-        if (star.opacity <= 0 || star.opacity >= 1) {
+        star.opacity += star.fadeDirection * 0.015;
+        if (star.opacity <= 0.3 || star.opacity >= 1) {
           star.fadeDirection *= -1;
         }
 
-        // Draw star
+        // Draw star with glow effect
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+        
+        // Add glow
+        const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 2);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${star.opacity})`);
+        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${star.opacity * 0.5})`);
+        gradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+        
+        ctx.fillStyle = gradient;
         ctx.fill();
       });
 
@@ -86,8 +93,8 @@ const StarBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
+      className="fixed top-0 left-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 1, opacity: 0.8 }}
     />
   );
 };
