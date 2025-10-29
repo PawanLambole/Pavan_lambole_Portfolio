@@ -97,12 +97,20 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
             </button>
           </div>
 
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors"
+            >
+              {isDark ? '☀️' : '🌙'}
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-300"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -128,12 +136,6 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
                   {item.label}
                 </button>
               ))}
-              <button
-                onClick={toggleTheme}
-                className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-              >
-                {isDark ? 'Light Mode' : 'Dark Mode'}
-              </button>
             </div>
           </motion.div>
         )}
