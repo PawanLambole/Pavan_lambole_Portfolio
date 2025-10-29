@@ -9,7 +9,7 @@ const Experience = () => {
       location: 'Dhule',
       period: '2023 - Present',
       icon: Users,
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-indian-saffron to-orange-500',
       description: [
         'Organizing chapter initiatives, technical events, workshops, and coding challenges',
         'Facilitated industry collaborations and tech talks',
@@ -22,7 +22,7 @@ const Experience = () => {
       location: 'Dhule',
       period: '2023 - Present',
       icon: Cpu,
-      color: 'from-green-500 to-emerald-500',
+      color: 'from-indian-green to-green-600',
       description: [
         'Led and instructed hands-on robotics workshops',
         'Enhanced participants practical skills in robotics and automation',
@@ -35,7 +35,7 @@ const Experience = () => {
       location: 'Remote',
       period: '2024',
       icon: Briefcase,
-      color: 'from-orange-500 to-red-500',
+      color: 'from-indian-blue to-blue-600',
       description: [
         'Focused on Java Programming fundamentals',
         'Developed practical applications and projects',
@@ -48,7 +48,7 @@ const Experience = () => {
       location: 'Dhule',
       period: '2025',
       icon: Award,
-      color: 'from-violet-500 to-purple-500',
+      color: 'from-orange-600 to-indian-saffron',
       description: [
         'First place in institutional project competition',
         'Presented innovative technical solution',
@@ -71,16 +71,16 @@ const Experience = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white px-4">
-            Experience & <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Achievements</span>
+            Experience & <span className="bg-gradient-to-r from-indian-saffron to-indian-green bg-clip-text text-transparent">Achievements</span>
           </h2>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green mx-auto rounded-full"></div>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-400 px-4">
             My journey and milestones
           </p>
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-600 to-cyan-600 hidden lg:block"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-indian-saffron via-white to-indian-green hidden lg:block"></div>
 
           <div className="space-y-8 sm:space-y-12">
             {experiences.map((exp, index) => {
@@ -135,7 +135,7 @@ const Experience = () => {
                     </motion.div>
                   </div>
 
-                  <div className="hidden lg:flex w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 items-center justify-center shadow-lg z-10">
+                  <div className="hidden lg:flex w-8 h-8 rounded-full bg-gradient-to-br from-indian-saffron to-indian-green items-center justify-center shadow-lg z-10">
                     <div className="w-4 h-4 rounded-full bg-white dark:bg-gray-900"></div>
                   </div>
 
@@ -151,7 +151,7 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 sm:mt-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 sm:p-8 text-white text-center"
+          className="mt-12 sm:mt-16 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-xl p-6 sm:p-8 text-gray-900 text-center"
         >
           <h3 className="text-xl sm:text-2xl font-bold mb-4">Certifications</h3>
           <div className="flex flex-wrap justify-center gap-4">

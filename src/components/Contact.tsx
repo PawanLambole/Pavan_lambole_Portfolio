@@ -29,21 +29,21 @@ const Contact = () => {
       name: 'Email',
       icon: Mail,
       href: 'mailto:pavanlambole578@gmail.com',
-      color: 'from-red-500 to-orange-500',
+      color: 'from-indian-saffron to-orange-500',
       username: 'pavanlambole578@gmail.com'
     },
     {
       name: 'GitHub',
       icon: Github,
       href: 'https://github.com/PawanLambole',
-      color: 'from-gray-700 to-gray-900',
+      color: 'from-indian-blue to-blue-800',
       username: 'github.com/PawanLambole'
     },
     {
       name: 'LinkedIn',
       icon: Linkedin,
       href: 'https://www.linkedin.com/in/pavan-lambole-659a9a27a',
-      color: 'from-blue-600 to-blue-800',
+      color: 'from-indian-green to-green-700',
       username: 'linkedin.com/in/pavan-lambole-659a9a27a'
     }
   ];
@@ -62,9 +62,9 @@ const Contact = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white px-4">
-            Get In <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Touch</span>
+            Get In <span className="bg-gradient-to-r from-indian-saffron to-indian-green bg-clip-text text-transparent">Touch</span>
           </h2>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green mx-auto rounded-full"></div>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-400 px-4">
             Let's work together on your next project
           </p>
@@ -154,7 +154,7 @@ const Contact = () => {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:shadow-lg transition-all duration-300"
+                className="w-full px-6 py-3 bg-gradient-to-r from-indian-saffron to-indian-orange text-white rounded-lg font-medium flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300"
               >
                 <Send size={20} />
                 Send Message
@@ -207,9 +207,9 @@ const Contact = () => {
               })}
             </div>
 
-            <div className="mt-8 p-5 sm:p-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white">
+            <div className="mt-8 p-5 sm:p-6 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-xl text-gray-900">
               <h4 className="text-base sm:text-lg font-bold mb-2">Quick Response</h4>
-              <p className="text-xs sm:text-sm opacity-90">
+              <p className="text-xs sm:text-sm font-medium">
                 I typically respond within 24 hours. Please reach out via email.
               </p>
             </div>

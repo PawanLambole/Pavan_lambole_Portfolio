@@ -7,35 +7,35 @@ const Projects = () => {
       title: 'Codebidder Platform',
       description: 'A comprehensive client-developer bidding platform built with ASP.NET MVC. Features include requirement uploads, quotation management, admin panel for user management, authentication system, notifications, and project tracking.',
       tech: ['ASP.NET MVC', 'C#', 'Entity Framework', 'SQL Server'],
-      gradient: 'from-blue-500 to-cyan-500',
+      gradient: 'from-indian-saffron to-orange-500',
       github: '#'
     },
     {
       title: 'HAJI Fitness Point',
       description: 'Mobile gym management application built with React Native and Expo. Manages gym members, payment details, and statistics with real-time data storage using Supabase. Features WhatsApp alerts, member search, dashboard, and analytics.',
       tech: ['React Native', 'TypeScript', 'Expo', 'Supabase'],
-      gradient: 'from-green-500 to-emerald-500',
+      gradient: 'from-indian-green to-green-600',
       github: '#'
     },
     {
       title: 'Swamitra',
       description: 'ASP.NET MVC-based project bidding site that connects clients with developers. Features comprehensive project management, bidding system, and workflow automation.',
       tech: ['ASP.NET MVC', 'C#', 'SQL Server'],
-      gradient: 'from-orange-500 to-red-500',
+      gradient: 'from-indian-blue to-blue-600',
       github: '#'
     },
     {
       title: 'Garbage Classifier Module',
       description: 'IoT-based garbage classification system using ESP32-CAM. Captures images and sends data over MQTT to PC for classification using Python. Results displayed on OLED display for real-time feedback.',
       tech: ['ESP32-CAM', 'C++', 'MQTT', 'Python'],
-      gradient: 'from-violet-500 to-purple-500',
+      gradient: 'from-orange-600 to-indian-saffron',
       github: '#'
     },
     {
       title: 'Student Adda Nashik',
       description: 'React Native mobile application built with Firebase for student community. Provides platform for students to connect, share resources, and collaborate on projects.',
       tech: ['React Native', 'Firebase', 'JavaScript'],
-      gradient: 'from-pink-500 to-rose-500',
+      gradient: 'from-indian-green to-emerald-600',
       github: '#'
     }
   ];
@@ -73,9 +73,9 @@ const Projects = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white px-4">
-            Featured <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Projects</span>
+            Featured <span className="bg-gradient-to-r from-indian-saffron to-indian-green bg-clip-text text-transparent">Projects</span>
           </h2>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green mx-auto rounded-full"></div>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-400 px-4">
             Some of my recent work and contributions
           </p>

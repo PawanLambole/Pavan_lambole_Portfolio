@@ -37,7 +37,7 @@ const Hero = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 px-4 break-words"
           >
-            <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+            <span className="bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
               Pavan Lambole
             </span>
           </motion.h1>
@@ -59,13 +59,13 @@ const Hero = () => {
           >
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-indian-saffron to-indian-orange text-white rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 text-sm sm:text-base"
             >
               Get In Touch
             </button>
             <button
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-blue-600 dark:border-cyan-400 text-blue-600 dark:text-cyan-400 rounded-lg font-medium hover:bg-blue-600 hover:text-white dark:hover:bg-cyan-400 dark:hover:text-gray-900 transition-all duration-300 text-sm sm:text-base"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-indian-green dark:border-indian-green text-indian-green dark:text-indian-green rounded-lg font-medium hover:bg-indian-green hover:text-white dark:hover:bg-indian-green dark:hover:text-white transition-all duration-300 text-sm sm:text-base"
             >
               View Projects
             </button>
@@ -78,7 +78,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 1, y: { repeat: Infinity, duration: 1.5 } }}
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors cursor-pointer"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-600 dark:text-gray-400 hover:text-indian-orange dark:hover:text-indian-green transition-colors cursor-pointer"
       >
         <ChevronDown size={40} />
       </motion.button>

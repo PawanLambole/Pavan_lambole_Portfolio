@@ -64,7 +64,7 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent"
+            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-indian-saffron via-white to-indian-green bg-clip-text text-transparent"
           >
             PL
           </motion.div>
@@ -76,15 +76,15 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
                 onClick={() => scrollToSection(item.id)}
                 className={`text-sm font-medium transition-colors relative ${
                   activeSection === item.id
-                    ? 'text-blue-600 dark:text-cyan-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400'
+                    ? 'text-indian-saffron dark:text-indian-green'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-indian-saffron dark:hover:text-indian-green'
                 }`}
               >
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 dark:bg-cyan-400"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-indian-saffron to-indian-green"
                   />
                 )}
               </button>
@@ -121,7 +121,7 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
                   onClick={() => scrollToSection(item.id)}
                   className={`block w-full text-left px-4 py-2 rounded-lg transition-colors ${
                     activeSection === item.id
-                      ? 'bg-blue-50 dark:bg-gray-800 text-blue-600 dark:text-cyan-400'
+                      ? 'bg-orange-50 dark:bg-gray-800 text-indian-saffron dark:text-indian-green'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
                   }`}
                 >

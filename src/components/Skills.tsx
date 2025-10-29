@@ -6,25 +6,25 @@ const Skills = () => {
     {
       title: 'Frontend',
       icon: Code2,
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-indian-saffron to-orange-500',
       skills: ['React', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'Tailwind CSS']
     },
     {
       title: 'Backend',
       icon: Server,
-      color: 'from-green-500 to-emerald-500',
+      color: 'from-indian-green to-green-600',
       skills: ['Node.js', 'Express.js', 'ASP.NET MVC', 'C#']
     },
     {
       title: 'Database',
       icon: Database,
-      color: 'from-orange-500 to-red-500',
+      color: 'from-indian-blue to-blue-600',
       skills: ['MongoDB', 'MySQL', 'SQL Server', 'Supabase']
     },
     {
       title: 'Tools',
       icon: Wrench,
-      color: 'from-violet-500 to-purple-500',
+      color: 'from-orange-600 to-indian-saffron',
       skills: ['Git', 'GitHub', 'Firebase', 'VS Code', 'Expo']
     }
   ];
@@ -62,9 +62,9 @@ const Skills = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white px-4">
-            Technical <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Skills</span>
+            Technical <span className="bg-gradient-to-r from-indian-saffron to-indian-green bg-clip-text text-transparent">Skills</span>
           </h2>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green mx-auto rounded-full"></div>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-400 px-4">
             Technologies and tools I work with
           </p>
@@ -119,7 +119,7 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 sm:mt-16 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 sm:p-8 text-white"
+          className="mt-12 sm:mt-16 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-xl p-6 sm:p-8 text-gray-900"
         >
           <h3 className="text-xl sm:text-2xl font-bold mb-4 text-center">Additional Expertise</h3>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
