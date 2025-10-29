@@ -6,7 +6,7 @@ type StarBackgroundProps = {
   zIndex?: number;
 };
 
-const StarBackground = ({ position = 'fixed', opacity = 0.8, zIndex = 1 }: StarBackgroundProps) => {
+const StarBackground = ({ position = 'fixed', opacity = 0.6, zIndex = 1 }: StarBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -16,10 +16,16 @@ const StarBackground = ({ position = 'fixed', opacity = 0.8, zIndex = 1 }: StarB
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size
+    // Set canvas size with device pixel ratio for crispness
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
@@ -31,70 +37,96 @@ const StarBackground = ({ position = 'fixed', opacity = 0.8, zIndex = 1 }: StarB
       radius: number;
       vx: number;
       vy: number;
-      opacity: number;
-      fadeDirection: number;
-      color: string;
+      baseAlpha: number;
+      twinkleAmp: number;
+      twinkleSpeed: number;
+      twinklePhase: number;
+      color: string; // rgb
+      depth: number; // 0..1 (parallax)
     }
 
     const stars: Star[] = [];
-    // Increase star count for visibility
-    const starCount = 350;
     const palette = [
-      '255, 255, 255', // white
-      '255, 153, 51', // saffron/orange
-      '66, 133, 244', // light blue
-      '19, 136, 8' // light green-ish
+      '255,255,255', // white
+      '173,216,255', // soft blue
+      '255,230,150', // yellow
+      '255,180,220', // pink
+      '200,170,255' // faint purple
     ];
 
-    // Create stars
-    for (let i = 0; i < starCount; i++) {
-      const radius = Math.random() * 3 + 1.2; // larger stars
-      const color = palette[Math.floor(Math.random() * palette.length)];
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        opacity: Math.random() * 0.5 + 0.5,
-        fadeDirection: Math.random() > 0.5 ? 1 : -1,
-        color
-      });
-    }
+    const makeStars = () => {
+      stars.length = 0;
+      const area = window.innerWidth * window.innerHeight;
+      // density tuned for visibility but performance-friendly
+      const density = 0.00020; // stars per px
+      const total = Math.floor(area * density);
+      for (let i = 0; i < total; i++) {
+        const depth = Math.random(); // 0 near, 1 far (we'll invert for speed)
+        const size = 0.6 + (1 - depth) * 2.0; // nearer looks bigger
+        const speed = 0.05 + (1 - depth) * 0.3; // nearer moves faster
+        const color = palette[(Math.random() * palette.length) | 0];
+        stars.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          radius: size,
+          vx: (Math.random() - 0.5) * speed,
+          vy: (Math.random() - 0.5) * speed,
+          baseAlpha: 0.35 + Math.random() * 0.45,
+          twinkleAmp: 0.15 + Math.random() * 0.35,
+          twinkleSpeed: 0.5 + Math.random() * 1.5,
+          twinklePhase: Math.random() * Math.PI * 2,
+          color,
+          depth
+        });
+      }
+    };
+    makeStars();
 
+    // Rebuild stars after resize so density matches area
+    const handleResize = () => {
+      resizeCanvas();
+      makeStars();
+    };
+    window.addEventListener('resize', handleResize);
+
+    let last = performance.now();
     // Animation loop
     const animate = () => {
+      const now = performance.now();
+      const dt = Math.min(50, now - last) / 1000; // cap delta for stability
+      last = now;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       stars.forEach((star) => {
-        // Update position
-        star.x += star.vx;
-        star.y += star.vy;
+        // Update position with delta time
+        star.x += star.vx * (60 * dt);
+        star.y += star.vy * (60 * dt);
 
         // Wrap around edges
-        if (star.x < 0) star.x = canvas.width;
-        if (star.x > canvas.width) star.x = 0;
-        if (star.y < 0) star.y = canvas.height;
-        if (star.y > canvas.height) star.y = 0;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        if (star.x < -5) star.x = w + 5;
+        if (star.x > w + 5) star.x = -5;
+        if (star.y < -5) star.y = h + 5;
+        if (star.y > h + 5) star.y = -5;
 
-        // Update opacity for twinkling effect
-        star.opacity += star.fadeDirection * 0.015;
-        if (star.opacity <= 0.3 || star.opacity >= 1) {
-          star.fadeDirection *= -1;
-        }
+        // Twinkling using smooth sinusoidal modulation
+        const alpha = star.baseAlpha + Math.sin(now * 0.001 * star.twinkleSpeed + star.twinklePhase) * star.twinkleAmp;
+        const a = Math.max(0.15, Math.min(1, alpha));
 
-  // Draw star with glow effect and color
-  ctx.beginPath();
-  ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-
-  // Add colored glow
-  const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 3);
-  gradient.addColorStop(0, `rgba(${star.color}, ${Math.min(1, star.opacity)})`);
-  gradient.addColorStop(0.4, `rgba(${star.color}, ${Math.min(0.6, star.opacity * 0.6)})`);
-  gradient.addColorStop(1, `rgba(${star.color}, 0)`);
-
-  ctx.fillStyle = gradient;
-  ctx.fill();
+        // Draw star with colored glow
+        const r = star.radius;
+        const gx = star.x;
+        const gy = star.y;
+        const gradient = ctx.createRadialGradient(gx, gy, 0, gx, gy, r * 3.2);
+        gradient.addColorStop(0, `rgba(${star.color}, ${a})`);
+        gradient.addColorStop(0.45, `rgba(${star.color}, ${a * 0.6})`);
+        gradient.addColorStop(1, `rgba(${star.color}, 0)`);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(gx, gy, r * 1.2, 0, Math.PI * 2);
+        ctx.fill();
       });
 
       requestAnimationFrame(animate);
@@ -103,7 +135,7 @@ const StarBackground = ({ position = 'fixed', opacity = 0.8, zIndex = 1 }: StarB
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
