@@ -51,7 +51,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen py-20 px-4 bg-white dark:bg-gray-900"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-white dark:bg-gray-900"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -59,25 +59,25 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white px-4">
             Get In <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Touch</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full"></div>
-          <p className="mt-6 text-lg text-gray-600 dark:text-gray-400">
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 mx-auto rounded-full"></div>
+          <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-600 dark:text-gray-400 px-4">
             Let's work together on your next project
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+            <h3 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900 dark:text-white">
               Send me a message
             </h3>
 
@@ -170,10 +170,10 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6 text-gray-900 dark:text-white">
                 Connect with me
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-8">
                 Feel free to reach out through any of these platforms. I'm always open to
                 discussing new projects, creative ideas, or opportunities to be part of your visions.
               </p>
@@ -207,9 +207,9 @@ const Contact = () => {
               })}
             </div>
 
-            <div className="mt-8 p-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white">
-              <h4 className="text-lg font-bold mb-2">Quick Response</h4>
-              <p className="text-sm opacity-90">
+            <div className="mt-8 p-5 sm:p-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white">
+              <h4 className="text-base sm:text-lg font-bold mb-2">Quick Response</h4>
+              <p className="text-xs sm:text-sm opacity-90">
                 I typically respond within 24 hours. Please reach out via email.
               </p>
             </div>
