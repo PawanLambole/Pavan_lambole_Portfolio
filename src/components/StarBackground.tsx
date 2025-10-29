@@ -1,6 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-const StarBackground = () => {
+type StarBackgroundProps = {
+  position?: 'fixed' | 'absolute';
+  opacity?: number;
+  zIndex?: number;
+};
+
+const StarBackground = ({ position = 'fixed', opacity = 0.8, zIndex = 1 }: StarBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -104,8 +110,8 @@ const StarBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 1, opacity: 0.8 }}
+      className={`${position} top-0 left-0 w-full h-full pointer-events-none`}
+      style={{ zIndex, opacity }}
     />
   );
 };

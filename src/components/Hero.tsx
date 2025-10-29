@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import StarBackground from './StarBackground';
 import profileImage from '../assets/1000190228.jpg';
 
 const Hero = () => {
@@ -22,13 +23,16 @@ const Hero = () => {
       id="home"
       className="min-h-screen w-full flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800"
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         {/* reduced opacity so starfield behind is visible */}
         <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 dark:from-blue-600/10 dark:to-cyan-600/10 rounded-full blur-3xl animate-pulse opacity-30 dark:opacity-20"></div>
         <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-blue-400/20 to-cyan-400/20 dark:from-blue-600/10 dark:to-cyan-600/10 rounded-full blur-3xl animate-pulse delay-1000 opacity-30 dark:opacity-20"></div>
       </div>
 
-      <div className="relative z-10 px-4 w-full max-w-7xl mx-auto">
+      {/* Stars within hero stacking context, above overlays and below content */}
+      <StarBackground position="absolute" opacity={0.7} zIndex={10} />
+
+  <div className="relative z-20 px-4 w-full max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-12 md:gap-16 lg:gap-20">
           {/* Profile Image Section */}
           <motion.div
