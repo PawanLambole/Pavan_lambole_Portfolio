@@ -8,6 +8,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import StarBackground from './components/StarBackground';
+import { getVisitorIpAndLocation } from './utils/analytics';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -20,6 +21,47 @@ function App() {
       setIsDark(true);
       document.documentElement.classList.add('dark');
     }
+    
+    // Track visitor on first load
+    const trackFirstVisit = async () => {
+      // Check if already tracked in this session
+      const hasTracked = sessionStorage.getItem('visitor_tracked');
+      if (hasTracked) return;
+      
+      try {
+        // Get IP and location
+        const { ip, location } = await getVisitorIpAndLocation();
+        
+        const visitorInfo = {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+          screenResolution: `${window.screen.width}x${window.screen.height}`,
+          language: navigator.language,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          referrer: document.referrer || 'Direct',
+          pageUrl: window.location.href,
+          ipAddress: ip,
+          location: location,
+        };
+
+        // Send to API
+        await fetch('/api/track-visitor', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(visitorInfo),
+        });
+        
+        // Mark as tracked
+        sessionStorage.setItem('visitor_tracked', 'true');
+      } catch (error) {
+        console.error('Failed to track visitor:', error);
+      }
+    };
+    
+    // Track after a small delay to not block initial render
+    setTimeout(trackFirstVisit, 2000);
   }, []);
 
   const toggleTheme = () => {
