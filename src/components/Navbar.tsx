@@ -48,11 +48,16 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      // Close menu first
       setIsMobileMenuOpen(false);
+      
+      // Then scroll after a short delay
+      setTimeout(() => {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }, 100);
     }
   };
 
