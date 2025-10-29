@@ -28,7 +28,7 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 px-4 w-full max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-12 md:gap-16 lg:gap-20">
           {/* Profile Image Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
