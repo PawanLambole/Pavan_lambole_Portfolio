@@ -10,9 +10,9 @@ const About = () => {
   return (
     <section
       id="about"
-      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-white dark:bg-gray-900"
+      className="min-h-screen py-12 sm:py-16 md:py-20 px-4 bg-white dark:bg-gray-900 w-full overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
