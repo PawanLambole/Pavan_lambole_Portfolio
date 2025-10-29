@@ -34,7 +34,8 @@ const Hero = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex-shrink-0 order-1 md:order-1"
+            // add explicit right margin on medium+ and small margin on mobile
+            className="flex-shrink-0 order-1 md:order-1 mr-0 md:mr-12 lg:mr-20"
           >
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
@@ -53,7 +54,8 @@ const Hero = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex-1 text-center md:text-left order-2 md:order-2"
+            // add left padding on medium+ to keep text away from the image
+            className="flex-1 text-center md:text-left order-2 md:order-2 md:pl-6 lg:pl-12"
           >
             <motion.h2
               initial={{ opacity: 0 }}
