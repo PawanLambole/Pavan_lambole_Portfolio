@@ -33,73 +33,129 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-12 md:gap-16 lg:gap-20">
           {/* Profile Image Section */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            // add explicit right margin on medium+ and small margin on mobile
+            initial={{ opacity: 0, x: -100, rotate: -10, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
+            transition={{ 
+              duration: 1.2, 
+              type: "spring", 
+              stiffness: 100,
+              delay: 0.2
+            }}
+            whileHover={{ 
+              scale: 1.05, 
+              rotate: [0, -2, 2, -2, 0],
+              transition: { duration: 0.6 }
+            }}
             className="flex-shrink-0 order-1 md:order-1 mr-0 md:mr-12 lg:mr-20 md:ml-8 lg:ml-16"
           >
             <div className="relative group">
-              {/* Ambient shadow glow */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+              {/* Ambient shadow glow with animation */}
+              <motion.div 
+                className="absolute -inset-2 bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green rounded-full blur-2xl opacity-30 group-hover:opacity-70"
+                animate={{
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 180, 360],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              ></motion.div>
               
               {/* Main profile image with clean gradient border and shadow */}
-              <div className="relative">
-                <div className="rounded-full bg-gradient-to-br from-indian-saffron via-indian-blue to-indian-green p-[3px] shadow-2xl shadow-gray-400/50 dark:shadow-gray-900/80">
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <motion.div 
+                  className="rounded-full bg-gradient-to-br from-indian-saffron via-indian-blue to-indian-green p-[3px] shadow-2xl shadow-gray-400/50 dark:shadow-gray-900/80"
+                  animate={{
+                    boxShadow: [
+                      "0 25px 50px -12px rgba(255, 153, 51, 0.5)",
+                      "0 25px 50px -12px rgba(19, 136, 8, 0.5)",
+                      "0 25px 50px -12px rgba(0, 102, 204, 0.5)",
+                      "0 25px 50px -12px rgba(255, 153, 51, 0.5)",
+                    ]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                >
                   <img
                     src={profileImage}
                     alt="Pavan Lambole"
                     className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-96 lg:h-96 object-cover rounded-full bg-white dark:bg-gray-900"
                   />
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </motion.div>
 
           {/* Text Content Section */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            // add left padding on medium+ to keep text away from the image
+            initial={{ opacity: 0, x: 100, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ 
+              duration: 1, 
+              type: "spring", 
+              stiffness: 80,
+              delay: 0.4
+            }}
             className="flex-1 text-center md:text-left order-2 md:order-2 md:pl-6 lg:pl-12"
           >
             <motion.h2
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
+              whileHover={{ scale: 1.1, x: 10 }}
               className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-4"
             >
               Hi, I'm
             </motion.h2>
 
             <motion.h1
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
+              initial={{ opacity: 0, scale: 0.5, rotateX: -90 }}
+              animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+              transition={{ 
+                delay: 0.8, 
+                duration: 1,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{ 
+                scale: 1.05,
+                textShadow: "0px 0px 20px rgba(255,153,51,0.8)"
+              }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 break-words"
             >
-              <span className="bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+              <motion.span 
+                className="bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                }}
+                transition={{ duration: 5, repeat: Infinity }}
+              >
                 Pavan Lambole
-              </span>
+              </motion.span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, type: "spring", stiffness: 150 }}
+              whileHover={{ scale: 1.05, letterSpacing: "0.05em" }}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 font-light"
             >
               Developer | Innovator | Tech Explorer
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              initial={{ opacity: 0, y: 50, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 1.2, type: "spring", stiffness: 100 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start"
             >
-              <button
+              <motion.button
                 onClick={() => {
                   const element = document.getElementById('contact');
                   if (element) {
@@ -109,11 +165,23 @@ const Hero = () => {
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                   }
                 }}
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-indian-saffron to-indian-orange text-white rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+                whileHover={{ 
+                  scale: 1.1, 
+                  rotate: [0, -3, 3, 0],
+                  boxShadow: "0 20px 40px rgba(255,153,51,0.6)"
+                }}
+                whileTap={{ scale: 0.95, rotate: 0 }}
+                animate={{
+                  y: [0, -5, 0],
+                }}
+                transition={{
+                  y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                }}
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-gradient-to-r from-indian-saffron to-indian-orange text-white rounded-lg font-medium shadow-lg shadow-orange-500/50 text-sm sm:text-base"
               >
                 Get In Touch
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 onClick={() => {
                   const element = document.getElementById('projects');
                   if (element) {
@@ -123,10 +191,25 @@ const Hero = () => {
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                   }
                 }}
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-indian-green dark:border-indian-green text-indian-green dark:text-indian-green rounded-lg font-medium hover:bg-indian-green hover:text-white dark:hover:bg-indian-green dark:hover:text-white transition-all duration-300 text-sm sm:text-base"
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: [0, 3, -3, 0],
+                  borderColor: "#138808",
+                  backgroundColor: "#138808",
+                  color: "#ffffff",
+                  boxShadow: "0 20px 40px rgba(19,136,8,0.6)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  y: [0, -5, 0],
+                }}
+                transition={{
+                  y: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }
+                }}
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-indian-green text-indian-green dark:text-indian-green rounded-lg font-medium text-sm sm:text-base"
               >
                 View Projects
-              </button>
+              </motion.button>
             </motion.div>
           </motion.div>
         </div>

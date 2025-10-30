@@ -85,21 +85,58 @@ const Projects = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+              whileHover={{ 
+                y: -20, 
+                scale: 1.05,
+                rotate: [0, -2, 2, 0],
+                boxShadow: "0 30px 60px rgba(0,0,0,0.3)",
+                transition: { duration: 0.4 }
+              }}
+              whileTap={{ scale: 0.98 }}
+              animate={{
+                boxShadow: [
+                  "0 10px 30px rgba(0,0,0,0.1)",
+                  "0 15px 40px rgba(0,0,0,0.15)",
+                  "0 10px 30px rgba(0,0,0,0.1)"
+                ]
+              }}
+              transition={{
+                boxShadow: { duration: 3, repeat: Infinity }
+              }}
+              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
             >
-              <div className={`h-2 bg-gradient-to-r ${project.gradient}`}></div>
+              <motion.div 
+                className={`h-2 bg-gradient-to-r ${project.gradient}`}
+                whileHover={{ height: "8px" }}
+                transition={{ duration: 0.3 }}
+              ></motion.div>
 
               <div className="p-6">
-                <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${project.gradient} flex items-center justify-center mb-4`}>
+                <motion.div 
+                  className={`w-16 h-16 rounded-lg bg-gradient-to-br ${project.gradient} flex items-center justify-center mb-4`}
+                  whileHover={{ 
+                    scale: 1.2, 
+                    rotate: 360,
+                    boxShadow: "0 10px 30px rgba(255,153,51,0.5)"
+                  }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                  animate={{
+                    rotate: [0, 10, -10, 0],
+                  }}
+                  transitionDuration={{ duration: 4, repeat: Infinity }}
+                >
                   <span className="text-2xl text-white font-bold">
                     {project.title.charAt(0)}
                   </span>
-                </div>
+                </motion.div>
 
-                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                <motion.h3 
+                  className="text-xl font-bold mb-3 text-gray-900 dark:text-white"
+                  whileHover={{ scale: 1.05, x: 10, color: "#FF9933" }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   {project.title}
-                </h3>
+                </motion.h3>
 
                 <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
                   {project.description}
@@ -119,18 +156,42 @@ const Projects = () => {
                 <div className="flex gap-4">
                   <motion.a
                     href={project.github}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ 
+                      scale: 1.15, 
+                      x: 5,
+                      rotate: [0, -5, 5, 0],
+                      color: "#0066CC"
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    animate={{
+                      y: [0, -3, 0]
+                    }}
+                    transition={{
+                      y: { duration: 2, repeat: Infinity }
+                    }}
+                    className="flex items-center gap-2 text-gray-700 dark:text-gray-300 transition-colors"
                   >
                     <Github size={20} />
                     <span className="text-sm font-medium">Code</span>
                   </motion.a>
                   <motion.a
                     href="#"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors"
+                    whileHover={{ 
+                      scale: 1.15, 
+                      x: 5,
+                      rotate: [0, 5, -5, 0],
+                      color: "#138808"
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                    animate={{
+                      y: [0, -3, 0]
+                    }}
+                    transition={{
+                      y: { duration: 2, repeat: Infinity, delay: 0.5 }
+                    }}
+                    className="flex items-center gap-2 text-gray-700 dark:text-gray-300 transition-colors"
                   >
                     <ExternalLink size={20} />
                     <span className="text-sm font-medium">Demo</span>

@@ -83,29 +83,83 @@ const Skills = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+                whileHover={{ 
+                  y: -20, 
+                  scale: 1.08,
+                  rotate: [0, -3, 3, 0],
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.25)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  y: [0, -5, 0]
+                }}
+                transition={{
+                  y: { duration: 3, repeat: Infinity, delay: index * 0.3 }
+                }}
+                className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
               >
-                <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 mx-auto`}>
+                <motion.div 
+                  className={`w-16 h-16 rounded-lg bg-gradient-to-br ${category.color} flex items-center justify-center mb-4 mx-auto`}
+                  whileHover={{ 
+                    scale: 1.3, 
+                    rotate: 360,
+                    boxShadow: "0 15px 40px rgba(255,153,51,0.6)"
+                  }}
+                  animate={{
+                    rotate: [0, 5, -5, 0],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
                   <Icon className="text-white" size={32} />
-                </div>
+                </motion.div>
 
-                <h3 className="text-xl font-bold text-center mb-4 text-gray-900 dark:text-white">
+                <motion.h3 
+                  className="text-xl font-bold text-center mb-4 text-gray-900 dark:text-white"
+                  whileHover={{ scale: 1.1, color: "#FF9933" }}
+                >
                   {category.title}
-                </h3>
+                </motion.h3>
 
                 <div className="space-y-2">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skillIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, x: -30, scale: 0.8 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: skillIndex * 0.1 }}
+                      transition={{ 
+                        delay: skillIndex * 0.1,
+                        type: "spring",
+                        stiffness: 200
+                      }}
+                      whileHover={{ 
+                        x: 10, 
+                        scale: 1.1,
+                        transition: { type: "spring", stiffness: 300 }
+                      }}
                       className="flex items-center gap-2"
                     >
-                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}></div>
-                      <span className="text-gray-700 dark:text-gray-300">{skill}</span>
+                      <motion.div 
+                        className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [1, 0.6, 1]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: skillIndex * 0.2
+                        }}
+                      ></motion.div>
+                      <motion.span 
+                        className="text-gray-700 dark:text-gray-300"
+                        whileHover={{ color: "#FF9933", fontWeight: "bold" }}
+                      >{skill}</motion.span>
                     </motion.div>
                   ))}
                 </div>
