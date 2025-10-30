@@ -31,6 +31,20 @@ const Contact = () => {
       href: 'mailto:pavanlambole578@gmail.com',
       color: 'from-indian-saffron to-orange-500',
       username: 'pavanlambole578@gmail.com'
+    },
+    {
+      name: 'GitHub',
+      icon: Github,
+      href: 'https://github.com/PawanLambole',
+      color: 'from-indian-blue to-blue-800',
+      username: 'github.com/PawanLambole'
+    },
+    {
+      name: 'LinkedIn',
+      icon: Linkedin,
+      href: 'https://www.linkedin.com/in/pavan-lambole-659a9a27a',
+      color: 'from-indian-green to-green-700',
+      username: 'linkedin.com/in/pavan-lambole-659a9a27a'
     }
   ];
 
@@ -165,7 +179,8 @@ const Contact = () => {
               </p>
             </div>
 
-            <div className="space-y-4">
+            {/* Social links hidden as requested - links still exist in code */}
+            <div className="space-y-4 hidden">
               {socialLinks.map((link, index) => {
                 const Icon = link.icon;
                 return (
