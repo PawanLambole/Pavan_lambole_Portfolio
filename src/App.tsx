@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import StarBackground from './components/StarBackground';
 import VisitorNameModal from './components/VisitorNameModal';
+import BackgroundMusic from './components/BackgroundMusic';
 import { getVisitorIpAndLocation } from './utils/analytics';
 
 function App() {
@@ -80,6 +81,9 @@ function App() {
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden relative">
       {/* Visitor Name Modal */}
       <VisitorNameModal onSubmit={handleVisitorName} />
+      
+      {/* Background Music Player */}
+      <BackgroundMusic />
       
       {/* Site-wide starfield with meteors - theme adaptive */}
       <StarBackground 
