@@ -8,28 +8,28 @@ const Projects = () => {
       description: 'A comprehensive client-developer bidding platform built with ASP.NET MVC. Features include requirement uploads, quotation management, admin panel for user management, authentication system, notifications, and project tracking.',
       tech: ['ASP.NET MVC', 'C#', 'Entity Framework', 'SQL Server'],
       gradient: 'from-indian-saffron to-orange-500',
-      github: '#'
+      github: 'https://github.com/PawanLambole/Codebidder'
     },
     {
       title: 'HAJI Fitness Point',
       description: 'Mobile gym management application built with React Native and Expo. Manages gym members, payment details, and statistics with real-time data storage using Supabase. Features WhatsApp alerts, member search, dashboard, and analytics.',
       tech: ['React Native', 'TypeScript', 'Expo', 'Supabase'],
       gradient: 'from-indian-green to-green-600',
-      github: '#'
+      github: 'https://github.com/PawanLambole/HAJI-Fitness-Point'
     },
     {
       title: 'Garbage Classifier Module',
       description: 'IoT-based garbage classification system using ESP32-CAM. Captures images and sends data over MQTT to PC for classification using Python. Results displayed on OLED display for real-time feedback.',
       tech: ['ESP32-CAM', 'C++', 'MQTT', 'Python'],
       gradient: 'from-orange-600 to-indian-saffron',
-      github: '#'
+      github: 'https://github.com/PawanLambole/Garbage-Classifier'
     },
     {
       title: 'Student Adda Nashik',
       description: 'React Native mobile application built with Firebase for student community. Provides platform for students to connect, share resources, and collaborate on projects.',
       tech: ['React Native', 'Firebase', 'JavaScript'],
       gradient: 'from-indian-green to-emerald-600',
-      github: '#'
+      github: 'https://github.com/PawanLambole/Student-Adda-Nashik'
     }
   ];
 
