@@ -40,16 +40,16 @@ const Hero = () => {
             className="flex-shrink-0 order-1 md:order-1 mr-0 md:mr-12 lg:mr-20 md:ml-8 lg:ml-16"
           >
             <div className="relative group">
-              {/* Subtle glow effect on hover */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
+              {/* Ambient shadow glow */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
               
-              {/* Main profile image with clean gradient border */}
+              {/* Main profile image with clean gradient border and shadow */}
               <div className="relative">
-                <div className="rounded-full bg-gradient-to-br from-indian-saffron via-indian-blue to-indian-green p-[3px] shadow-xl">
+                <div className="rounded-full bg-gradient-to-br from-indian-saffron via-indian-blue to-indian-green p-[3px] shadow-2xl shadow-gray-400/50 dark:shadow-gray-900/80">
                   <img
                     src={profileImage}
                     alt="Pavan Lambole"
-                    className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full bg-white dark:bg-gray-900"
+                    className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-96 lg:h-96 object-cover rounded-full bg-white dark:bg-gray-900"
                   />
                 </div>
               </div>

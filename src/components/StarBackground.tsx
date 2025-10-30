@@ -107,17 +107,17 @@ const StarBackground = ({
     
     // Spawn meteors occasionally
     const spawnMeteor = () => {
-      if (meteors.length < 3 && Math.random() < 0.015) {
+      if (meteors.length < 5 && Math.random() < 0.035) {
         const meteorColors = ['255,255,255', '173,216,255', '255,230,150'];
         meteors.push({
           x: window.innerWidth * (0.7 + Math.random() * 0.3),
           y: -50,
           vx: -(3 + Math.random() * 4),
           vy: 2 + Math.random() * 3,
-          length: 40 + Math.random() * 60,
-          opacity: 0.8 + Math.random() * 0.2,
+          length: 50 + Math.random() * 70,
+          opacity: 0.9 + Math.random() * 0.1,
           life: 0,
-          maxLife: 1.5 + Math.random() * 1.5,
+          maxLife: 2 + Math.random() * 2,
           color: meteorColors[(Math.random() * meteorColors.length) | 0]
         });
       }
