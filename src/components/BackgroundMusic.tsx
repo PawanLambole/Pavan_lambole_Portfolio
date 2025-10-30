@@ -12,19 +12,23 @@ const BackgroundMusic = () => {
     if (audioRef.current) {
       audioRef.current.volume = 0.15; // Low volume (15%)
       audioRef.current.loop = true;
-      
-      // Autoplay immediately on component mount
-      const playMusic = async () => {
-        try {
-          await audioRef.current?.play();
-          setIsPlaying(true);
-        } catch (err) {
-          console.log('Autoplay blocked by browser, user can manually start');
-        }
-      };
-      
-      playMusic();
     }
+
+    // Play music on window load event
+    const handleLoad = async () => {
+      try {
+        await audioRef.current?.play();
+        setIsPlaying(true);
+      } catch (err) {
+        console.log('Music play attempted on load');
+      }
+    };
+
+    window.addEventListener('load', handleLoad);
+
+    return () => {
+      window.removeEventListener('load', handleLoad);
+    };
   }, []);
 
   const togglePlay = () => {
@@ -49,7 +53,7 @@ const BackgroundMusic = () => {
 
   return (
     <>
-      <audio ref={audioRef} src={bgMusic} autoPlay />
+      <audio ref={audioRef} src={bgMusic} />
       
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
