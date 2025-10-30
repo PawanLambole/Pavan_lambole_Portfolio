@@ -37,7 +37,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             // add explicit right margin on medium+ and small margin on mobile
-            className="flex-shrink-0 order-1 md:order-1 mr-0 md:mr-12 lg:mr-20"
+            className="flex-shrink-0 order-1 md:order-1 mr-0 md:mr-12 lg:mr-20 md:ml-8 lg:ml-16"
           >
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
