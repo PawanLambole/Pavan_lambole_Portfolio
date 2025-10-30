@@ -105,15 +105,34 @@ const StarBackground = ({
     };
     makeStars();
     
-    // Spawn meteors occasionally
+    // Spawn meteors occasionally from random positions
     const spawnMeteor = () => {
       if (meteors.length < 5 && Math.random() < 0.035) {
         const meteorColors = ['255,255,255', '173,216,255', '255,230,150'];
+        
+        // Random spawn position: can start from any edge
+        const spawnSide = Math.random();
+        let startX, startY, vx, vy;
+        
+        if (spawnSide < 0.5) {
+          // Spawn from top, moving diagonally down
+          startX = Math.random() * window.innerWidth;
+          startY = -50;
+          vx = (Math.random() - 0.5) * 6;
+          vy = 2 + Math.random() * 4;
+        } else {
+          // Spawn from right/top-right, moving diagonally left-down
+          startX = window.innerWidth + 50;
+          startY = Math.random() * window.innerHeight * 0.5;
+          vx = -(3 + Math.random() * 5);
+          vy = 1 + Math.random() * 4;
+        }
+        
         meteors.push({
-          x: window.innerWidth * (0.7 + Math.random() * 0.3),
-          y: -50,
-          vx: -(3 + Math.random() * 4),
-          vy: 2 + Math.random() * 3,
+          x: startX,
+          y: startY,
+          vx: vx,
+          vy: vy,
           length: 50 + Math.random() * 70,
           opacity: 0.9 + Math.random() * 0.1,
           life: 0,
