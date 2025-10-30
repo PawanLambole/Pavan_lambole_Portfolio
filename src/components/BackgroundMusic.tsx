@@ -12,6 +12,23 @@ const BackgroundMusic = () => {
     if (audioRef.current) {
       audioRef.current.volume = 0.15; // Low volume (15%)
       audioRef.current.loop = true;
+      
+      // Autoplay music when site loads
+      const playAudio = async () => {
+        try {
+          await audioRef.current?.play();
+          setIsPlaying(true);
+        } catch (err) {
+          console.log('Autoplay prevented by browser. User interaction needed.');
+        }
+      };
+      
+      // Try to autoplay after a short delay
+      const timer = setTimeout(() => {
+        playAudio();
+      }, 1000);
+      
+      return () => clearTimeout(timer);
     }
   }, []);
 
