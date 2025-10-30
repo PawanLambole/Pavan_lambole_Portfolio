@@ -18,13 +18,6 @@ const Projects = () => {
       github: '#'
     },
     {
-      title: 'Swamitra',
-      description: 'ASP.NET MVC-based project bidding site that connects clients with developers. Features comprehensive project management, bidding system, and workflow automation.',
-      tech: ['ASP.NET MVC', 'C#', 'SQL Server'],
-      gradient: 'from-indian-blue to-blue-600',
-      github: '#'
-    },
-    {
       title: 'Garbage Classifier Module',
       description: 'IoT-based garbage classification system using ESP32-CAM. Captures images and sends data over MQTT to PC for classification using Python. Results displayed on OLED display for real-time feedback.',
       tech: ['ESP32-CAM', 'C++', 'MQTT', 'Python'],
