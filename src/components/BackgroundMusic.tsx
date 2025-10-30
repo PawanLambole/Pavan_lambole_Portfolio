@@ -12,57 +12,19 @@ const BackgroundMusic = () => {
     if (audioRef.current) {
       audioRef.current.volume = 0.15; // Low volume (15%)
       audioRef.current.loop = true;
-    }
-
-    let hasPlayed = false;
-
-    // Try to autoplay on any user interaction or load
-    const startMusic = async () => {
-      if (audioRef.current && !hasPlayed) {
-        try {
-          await audioRef.current.play();
-          setIsPlaying(true);
-          hasPlayed = true;
-          // Remove listeners after first play
-          window.removeEventListener('load', startMusic);
-          document.removeEventListener('click', startMusic);
-          document.removeEventListener('scroll', startMusic);
-          document.removeEventListener('touchstart', startMusic);
-          document.removeEventListener('keydown', startMusic);
-        } catch (err) {
-          console.log('Music play attempted');
-        }
-      }
-    };
-
-    // Add multiple event listeners to catch first interaction or load
-    window.addEventListener('load', startMusic);
-    document.addEventListener('click', startMusic);
-    document.addEventListener('scroll', startMusic);
-    document.addEventListener('touchstart', startMusic);
-    document.addEventListener('keydown', startMusic);
-
-    // Try immediate autoplay on component mount (works in some browsers)
-    const immediatePlay = setTimeout(async () => {
-      if (!hasPlayed) {
+      
+      // Autoplay immediately on component mount
+      const playMusic = async () => {
         try {
           await audioRef.current?.play();
           setIsPlaying(true);
-          hasPlayed = true;
         } catch (err) {
-          // Will play on load or first user interaction
+          console.log('Autoplay blocked by browser, user can manually start');
         }
-      }
-    }, 500);
-
-    return () => {
-      clearTimeout(immediatePlay);
-      window.removeEventListener('load', startMusic);
-      document.removeEventListener('click', startMusic);
-      document.removeEventListener('scroll', startMusic);
-      document.removeEventListener('touchstart', startMusic);
-      document.removeEventListener('keydown', startMusic);
-    };
+      };
+      
+      playMusic();
+    }
   }, []);
 
   const togglePlay = () => {
@@ -87,7 +49,7 @@ const BackgroundMusic = () => {
 
   return (
     <>
-      <audio ref={audioRef} src={bgMusic} />
+      <audio ref={audioRef} src={bgMusic} autoPlay />
       
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
