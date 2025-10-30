@@ -40,16 +40,17 @@ const Hero = () => {
             className="flex-shrink-0 order-1 md:order-1 mr-0 md:mr-12 lg:mr-20 md:ml-8 lg:ml-16"
           >
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-full blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
-              <div className="relative rounded-full bg-white dark:bg-gray-900 p-1.5 sm:p-2 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.5)]">
-                <div className="rounded-full bg-gradient-to-r from-indian-saffron via-white to-indian-green p-[2px] sm:p-[3px]">
-                  <div className="rounded-full bg-white dark:bg-gray-900 p-1">
-                    <img
-                      src={profileImage}
-                      alt="Pavan Lambole"
-                      className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full"
-                    />
-                  </div>
+              {/* Subtle glow effect on hover */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-indian-blue to-indian-green rounded-full blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
+              
+              {/* Main profile image with clean gradient border */}
+              <div className="relative">
+                <div className="rounded-full bg-gradient-to-br from-indian-saffron via-indian-blue to-indian-green p-[3px] shadow-xl">
+                  <img
+                    src={profileImage}
+                    alt="Pavan Lambole"
+                    className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full bg-white dark:bg-gray-900"
+                  />
                 </div>
               </div>
             </div>
