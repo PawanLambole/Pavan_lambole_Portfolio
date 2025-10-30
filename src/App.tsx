@@ -13,7 +13,6 @@ import { getVisitorIpAndLocation } from './utils/analytics';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
-  const [visitorName, setVisitorName] = useState<string>('');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -62,7 +61,7 @@ function App() {
   };
 
   const handleVisitorName = (name: string) => {
-    setVisitorName(name);
+    // No need to store locally; send directly for tracking
     trackVisitorWithName(name);
   };
 
