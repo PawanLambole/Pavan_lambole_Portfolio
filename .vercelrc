@@ -1,2 +1,2 @@
-# Vercel Configuration
-NODEJS_VERSION=18.x
+# Vercel Configuration (advisory; Vercel primarily reads package.json engines)
+NODEJS_VERSION=22.x
