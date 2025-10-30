@@ -179,8 +179,7 @@ const Contact = () => {
               </p>
             </div>
 
-            {/* Social links hidden as requested - links still exist in code */}
-            <div className="space-y-4 hidden">
+            <div className="space-y-4">
               {socialLinks.map((link, index) => {
                 const Icon = link.icon;
                 return (
