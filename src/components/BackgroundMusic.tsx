@@ -14,12 +14,15 @@ const BackgroundMusic = () => {
       audioRef.current.loop = true;
     }
 
+    let hasPlayed = false;
+
     // Try to autoplay on any user interaction or load
     const startMusic = async () => {
-      if (audioRef.current && !isPlaying) {
+      if (audioRef.current && !hasPlayed) {
         try {
           await audioRef.current.play();
           setIsPlaying(true);
+          hasPlayed = true;
           // Remove listeners after first play
           window.removeEventListener('load', startMusic);
           document.removeEventListener('click', startMusic);
@@ -41,11 +44,14 @@ const BackgroundMusic = () => {
 
     // Try immediate autoplay on component mount (works in some browsers)
     const immediatePlay = setTimeout(async () => {
-      try {
-        await audioRef.current?.play();
-        setIsPlaying(true);
-      } catch (err) {
-        // Will play on load or first user interaction
+      if (!hasPlayed) {
+        try {
+          await audioRef.current?.play();
+          setIsPlaying(true);
+          hasPlayed = true;
+        } catch (err) {
+          // Will play on load or first user interaction
+        }
       }
     }, 500);
 
@@ -57,7 +63,7 @@ const BackgroundMusic = () => {
       document.removeEventListener('touchstart', startMusic);
       document.removeEventListener('keydown', startMusic);
     };
-  }, [isPlaying]);
+  }, []);
 
   const togglePlay = () => {
     if (audioRef.current) {
