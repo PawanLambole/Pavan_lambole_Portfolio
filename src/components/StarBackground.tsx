@@ -80,23 +80,26 @@ const StarBackground = ({
     const makeStars = () => {
       stars.length = 0;
       const area = window.innerWidth * window.innerHeight;
-      // Increased density for better visibility
-      const density = isDark ? 0.00035 : 0.00025;
+      // Increased density for realistic star field
+      const density = isDark ? 0.0004 : 0.0003;
       const total = Math.floor(area * density);
       for (let i = 0; i < total; i++) {
         const depth = Math.random();
-        const size = 0.8 + (1 - depth) * 2.5; // Larger stars
-        const speed = 0.08 + (1 - depth) * 0.4;
-        const color = palette[(Math.random() * palette.length) | 0];
+        // Smaller, more realistic star sizes
+        const size = Math.random() < 0.95 ? 0.5 + Math.random() * 1 : 1.5 + Math.random() * 1; // 95% small, 5% bright
+        // Mostly white stars with occasional colored ones
+        const colorRand = Math.random();
+        const color = colorRand < 0.85 ? '255,255,255' : palette[(Math.random() * palette.length) | 0];
+        
         stars.push({
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
           radius: size,
-          vx: (Math.random() - 0.5) * speed,
-          vy: (Math.random() - 0.5) * speed,
-          baseAlpha: isDark ? 0.5 + Math.random() * 0.5 : 0.3 + Math.random() * 0.4,
-          twinkleAmp: 0.2 + Math.random() * 0.4,
-          twinkleSpeed: 0.5 + Math.random() * 1.5,
+          vx: 0, // No movement
+          vy: 0, // No movement
+          baseAlpha: isDark ? 0.4 + Math.random() * 0.6 : 0.3 + Math.random() * 0.5,
+          twinkleAmp: 0.3 + Math.random() * 0.5, // More pronounced twinkling
+          twinkleSpeed: 0.3 + Math.random() * 1.2, // Varied twinkle speeds
           twinklePhase: Math.random() * Math.PI * 2,
           color,
           depth
@@ -161,35 +164,25 @@ const StarBackground = ({
       // Try to spawn meteors
       spawnMeteor();
 
-      // Draw and update stars
+      // Draw twinkling stars (stationary)
       stars.forEach((star) => {
-        // Update position with delta time
-        star.x += star.vx * (60 * dt);
-        star.y += star.vy * (60 * dt);
-
-        // Wrap around edges
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        if (star.x < -5) star.x = w + 5;
-        if (star.x > w + 5) star.x = -5;
-        if (star.y < -5) star.y = h + 5;
-        if (star.y > h + 5) star.y = -5;
-
         // Twinkling using smooth sinusoidal modulation
         const alpha = star.baseAlpha + Math.sin(now * 0.001 * star.twinkleSpeed + star.twinklePhase) * star.twinkleAmp;
-        const a = Math.max(0.15, Math.min(1, alpha));
+        const a = Math.max(0.1, Math.min(1, alpha));
 
-        // Draw star with colored glow
+        // Draw star as a small point with subtle glow for realism
         const r = star.radius;
         const gx = star.x;
         const gy = star.y;
-        const gradient = ctx.createRadialGradient(gx, gy, 0, gx, gy, r * 3.2);
+        
+        // Smaller glow radius for more realistic look
+        const gradient = ctx.createRadialGradient(gx, gy, 0, gx, gy, r * 2);
         gradient.addColorStop(0, `rgba(${star.color}, ${a})`);
-        gradient.addColorStop(0.45, `rgba(${star.color}, ${a * 0.6})`);
+        gradient.addColorStop(0.3, `rgba(${star.color}, ${a * 0.5})`);
         gradient.addColorStop(1, `rgba(${star.color}, 0)`);
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(gx, gy, r * 1.2, 0, Math.PI * 2);
+        ctx.arc(gx, gy, r * 1.5, 0, Math.PI * 2);
         ctx.fill();
       });
       
