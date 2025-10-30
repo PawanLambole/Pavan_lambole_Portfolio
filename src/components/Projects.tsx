@@ -122,8 +122,8 @@ const Projects = () => {
                   transition={{ type: "spring", stiffness: 200 }}
                   animate={{
                     rotate: [0, 10, -10, 0],
+                    transition: { duration: 4, repeat: Infinity }
                   }}
-                  transitionDuration={{ duration: 4, repeat: Infinity }}
                 >
                   <span className="text-2xl text-white font-bold">
                     {project.title.charAt(0)}
