@@ -41,7 +41,7 @@ const Hero = () => {
           >
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative">
+              <div className="relative rounded-full ring-2 ring-gray-200 ring-offset-2 ring-offset-white dark:ring-gray-700 dark:ring-offset-gray-900">
                 <img
                   src={profileImage}
                   alt="Pavan Lambole"
