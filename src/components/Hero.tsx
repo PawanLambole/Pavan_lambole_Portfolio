@@ -40,13 +40,17 @@ const Hero = () => {
             className="flex-shrink-0 order-1 md:order-1 mr-0 md:mr-12 lg:mr-20 md:ml-8 lg:ml-16"
           >
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-full blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative rounded-full ring-2 ring-gray-200 ring-offset-2 ring-offset-white dark:ring-gray-700 dark:ring-offset-gray-900">
-                <img
-                  src={profileImage}
-                  alt="Pavan Lambole"
-                  className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-2xl"
-                />
+              <div className="absolute -inset-1 bg-gradient-to-r from-indian-saffron via-white to-indian-green rounded-full blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
+              <div className="relative rounded-full bg-white dark:bg-gray-900 p-1.5 sm:p-2 shadow-[0_15px_35px_-15px_rgba(0,0,0,0.5)]">
+                <div className="rounded-full bg-gradient-to-r from-indian-saffron via-white to-indian-green p-[2px] sm:p-[3px]">
+                  <div className="rounded-full bg-white dark:bg-gray-900 p-1">
+                    <img
+                      src={profileImage}
+                      alt="Pavan Lambole"
+                      className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover rounded-full"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
