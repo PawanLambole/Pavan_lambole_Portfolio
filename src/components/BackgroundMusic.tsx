@@ -12,25 +12,49 @@ const BackgroundMusic = () => {
     if (audioRef.current) {
       audioRef.current.volume = 0.15; // Low volume (15%)
       audioRef.current.loop = true;
-      
-      // Autoplay music when site loads
-      const playAudio = async () => {
-        try {
-          await audioRef.current?.play();
-          setIsPlaying(true);
-        } catch (err) {
-          console.log('Autoplay prevented by browser. User interaction needed.');
-        }
-      };
-      
-      // Try to autoplay after a short delay
-      const timer = setTimeout(() => {
-        playAudio();
-      }, 1000);
-      
-      return () => clearTimeout(timer);
     }
-  }, []);
+
+    // Try to autoplay on any user interaction
+    const startMusic = async () => {
+      if (audioRef.current && !isPlaying) {
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+          // Remove listeners after first play
+          document.removeEventListener('click', startMusic);
+          document.removeEventListener('scroll', startMusic);
+          document.removeEventListener('touchstart', startMusic);
+          document.removeEventListener('keydown', startMusic);
+        } catch (err) {
+          console.log('Music play attempted');
+        }
+      }
+    };
+
+    // Add multiple event listeners to catch first interaction
+    document.addEventListener('click', startMusic);
+    document.addEventListener('scroll', startMusic);
+    document.addEventListener('touchstart', startMusic);
+    document.addEventListener('keydown', startMusic);
+
+    // Try immediate autoplay (works in some browsers)
+    const immediatePlay = setTimeout(async () => {
+      try {
+        await audioRef.current?.play();
+        setIsPlaying(true);
+      } catch (err) {
+        // Will play on first user interaction
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(immediatePlay);
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('scroll', startMusic);
+      document.removeEventListener('touchstart', startMusic);
+      document.removeEventListener('keydown', startMusic);
+    };
+  }, [isPlaying]);
 
   const togglePlay = () => {
     if (audioRef.current) {
