@@ -13,22 +13,6 @@ const BackgroundMusic = () => {
       audioRef.current.volume = 0.15; // Low volume (15%)
       audioRef.current.loop = true;
     }
-
-    // Play music on window load event
-    const handleLoad = async () => {
-      try {
-        await audioRef.current?.play();
-        setIsPlaying(true);
-      } catch (err) {
-        console.log('Music play attempted on load');
-      }
-    };
-
-    window.addEventListener('load', handleLoad);
-
-    return () => {
-      window.removeEventListener('load', handleLoad);
-    };
   }, []);
 
   const togglePlay = () => {
