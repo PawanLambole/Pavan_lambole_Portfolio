@@ -51,12 +51,13 @@ const VisitorNameModal = ({ onSubmit }: VisitorNameModalProps) => {
           />
 
           {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-[90%] max-w-md mx-4 sm:mx-0"
-          >
+          <div className="fixed inset-0 z-[101] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="w-full max-w-md"
+            >
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-5 sm:p-8 relative border border-gray-200 dark:border-gray-700">
               {/* Close button */}
               <button
@@ -113,7 +114,8 @@ const VisitorNameModal = ({ onSubmit }: VisitorNameModalProps) => {
                 This helps me understand my visitors better. Your privacy is respected.
               </p>
             </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
