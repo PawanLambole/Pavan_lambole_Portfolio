@@ -31,20 +31,6 @@ const Contact = () => {
       href: 'mailto:pavanlambole578@gmail.com',
       color: 'from-indian-saffron to-orange-500',
       username: 'pavanlambole578@gmail.com'
-    },
-    {
-      name: 'GitHub',
-      icon: Github,
-      href: 'https://github.com/PawanLambole',
-      color: 'from-indian-blue to-blue-800',
-      username: 'github.com/PawanLambole'
-    },
-    {
-      name: 'LinkedIn',
-      icon: Linkedin,
-      href: 'https://www.linkedin.com/in/pavan-lambole-659a9a27a',
-      color: 'from-indian-green to-green-700',
-      username: 'linkedin.com/in/pavan-lambole-659a9a27a'
     }
   ];
 
@@ -108,7 +94,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-gray-900 dark:text-white"
-                  placeholder="John Doe"
+                  placeholder=""
                 />
               </div>
 
@@ -127,7 +113,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-gray-900 dark:text-white"
-                  placeholder="john@example.com"
+                  placeholder=""
                 />
               </div>
 
@@ -146,7 +132,7 @@ const Contact = () => {
                   required
                   rows={6}
                   className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none text-gray-900 dark:text-white"
-                  placeholder="Tell me about your project..."
+                  placeholder=""
                 />
               </div>
 
