@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { motion } from 'framer-motion';
-import bgMusic from '../assets/JD Intro Theme _ Master Mash-up _ Thalapathy.mp3';
+import bgMusic from '../assets/Interstellar Main Theme - Hans Zimmer.mp3';
 
 const BackgroundMusic = () => {
   const [isPlaying, setIsPlaying] = useState(false);
