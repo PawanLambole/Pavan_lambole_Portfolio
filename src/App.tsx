@@ -8,7 +8,6 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import StarBackground from './components/StarBackground';
-import BigBangAnimation from './components/BigBangAnimation';
 import VisitorNameModal from './components/VisitorNameModal';
 import BackgroundMusic from './components/BackgroundMusic';
 import { getVisitorIpAndLocation } from './utils/analytics';
@@ -85,9 +84,6 @@ function App() {
       
       {/* Background Music Player */}
       <BackgroundMusic />
-      
-      {/* Big Bang Evolution Animation - deepest layer */}
-      <BigBangAnimation />
       
       {/* Site-wide starfield with meteors - theme adaptive */}
       <StarBackground 
