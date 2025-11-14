@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import ReleaseGallery from '../../components/ReleaseGallery';
 
 const Codebidder = () => {
   return (
@@ -58,9 +57,27 @@ const Codebidder = () => {
           </div>
         </motion.div>
 
-        {/* Release images (from GitHub Releases) */}
+        {/* Project Screenshots */}
         <div className="mb-10">
-          <ReleaseGallery owner="PawanLambole" repo="codebidder" title="Release Screenshots" />
+          <h3 className="text-xl font-semibold mb-4">Screenshots</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { name: 'Homepage', url: 'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/homepage.jpg' },
+              { name: 'Submit Project', url: 'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/submitproject.jpg' },
+              { name: 'Submit Quotation', url: 'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/submitquotation.jpg' },
+              { name: 'View Quotations', url: 'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/viewquotations.jpg' },
+              { name: 'Quotation Details', url: 'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/quotationdetails.jpg' },
+              { name: 'Quotation Report', url: 'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/quatationreport.jpg' },
+            ].map((img, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.03, y: -4 }}
+                className="aspect-video rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg"
+              >
+                <img src={img.url} alt={img.name} className="w-full h-full object-cover" />
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Feature grid with animated cards */}

@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ReleaseGallery from '../../components/ReleaseGallery';
 
 const PhoneMock = () => (
   <div className="w-60 h-120 rounded-[2rem] bg-gray-900 border-8 border-gray-700 relative overflow-hidden shadow-2xl">
@@ -35,15 +34,26 @@ const HajiFitness = () => {
         </div>
 
         <div className="mb-10">
-          <ReleaseGallery owner="PawanLambole" repo="haji-fitness-point" title="Release Screenshots" />
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {[1,2,3].map((i)=> (
-            <motion.div key={i} whileHover={{ scale: 1.03 }} className="aspect-[9/16] rounded-xl bg-gray-200/40 dark:bg-gray-700/40 border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-500">
-              App Screenshot {i}
-            </motion.div>
-          ))}
+          <h3 className="text-xl font-semibold mb-4">App Screenshots</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[
+              { name: 'Splash', url: 'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/splash.jpg' },
+              { name: 'Login', url: 'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/login.jpg' },
+              { name: 'Dashboard', url: 'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/dashboard.jpg' },
+              { name: 'Members List', url: 'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/members%20list.jpg' },
+              { name: 'Add Member', url: 'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/add%20member.jpg' },
+              { name: 'Edit Member', url: 'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/edit%20member.jpg' },
+              { name: 'Profile', url: 'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/profile.jpg' },
+            ].map((img, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.05, rotate: idx % 2 === 0 ? 2 : -2 }}
+                className="aspect-[9/16] rounded-2xl overflow-hidden bg-gray-900 shadow-2xl border-4 border-gray-800"
+              >
+                <img src={img.url} alt={img.name} className="w-full h-full object-cover" />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
