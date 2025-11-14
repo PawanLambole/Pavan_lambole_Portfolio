@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ReleaseGallery from '../../components/ReleaseGallery';
 
 const Typing = ({ text }: { text: string }) => (
   <motion.span
@@ -25,10 +24,6 @@ const CmdHelper = () => {
         <div className="rounded-xl bg-black p-6 font-mono text-green-400 shadow-xl border border-green-900/40 mb-6">
           <div className="mb-2">C:\Users\Pawan&gt; <Typing text={"tree /A /F"} /></div>
           <div className="opacity-70">Generating directory structure...</div>
-        </div>
-
-        <div className="mb-10">
-          <ReleaseGallery owner="PawanLambole" repo="cmd-helper" title="Release Screenshots" />
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">

@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ReleaseGallery from '../../components/ReleaseGallery';
 
 const FlipCard = ({ title }: { title: string }) => (
   <motion.div className="w-56 h-36 perspective">
@@ -22,10 +21,6 @@ const StudyGenie = () => {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl md:text-5xl font-bold">StudyGenie</h1>
           <Link to="/" className="text-indigo-500 hover:underline">← Back to Home</Link>
-        </div>
-
-        <div className="mb-10">
-          <ReleaseGallery owner="PawanLambole" repo="studygenie" title="Release Screenshots" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-10 items-center">

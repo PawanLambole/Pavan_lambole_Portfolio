@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ReleaseGallery from '../../components/ReleaseGallery';
 
 const Landmark = ({ x, y }: { x:number; y:number }) => (
   <circle cx={x} cy={y} r={3} fill="#FF9933" />
@@ -18,10 +17,6 @@ const ProjectAnwaya = () => {
         <motion.div initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} className="rounded-2xl bg-gray-100 dark:bg-gray-800 p-6 mb-8">
           <p className="text-gray-700 dark:text-gray-300">Indian Sign Language to Marathi translation using MediaPipe + LSTM. Real-time gesture detection and translation pipeline.</p>
         </motion.div>
-
-        <div className="mb-10">
-          <ReleaseGallery owner="PawanLambole" repo="Project-Anwaya" title="Release Screenshots" />
-        </div>
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <motion.div className="relative bg-black rounded-xl aspect-video overflow-hidden">
