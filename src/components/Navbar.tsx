@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 
 interface NavbarProps {
   isDark: boolean;
@@ -12,7 +11,6 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [showProjectsMenu, setShowProjectsMenu] = useState(false);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -105,28 +103,6 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
                 )}
               </button>
             ))}
-            <div className="relative" onMouseLeave={() => setShowProjectsMenu(false)}>
-              <button onMouseEnter={() => setShowProjectsMenu(true)} className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-indian-saffron dark:hover:text-indian-green">
-                Project Pages ▾
-              </button>
-              <AnimatePresence>
-                {showProjectsMenu && (
-                  <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl p-2 z-50">
-                    {[
-                      { label: 'Codebidder', to: '/projects/codebidder' },
-                      { label: 'HAJI Fitness', to: '/projects/haji-fitness' },
-                      { label: 'Project Anwaya', to: '/projects/project-anwaya' },
-                      { label: 'StudyGenie', to: '/projects/studygenie' },
-                      { label: 'CMD Helper', to: '/projects/cmd-helper' },
-                    ].map((p) => (
-                      <Link key={p.to} to={p.to} className="block px-3 py-2 rounded-md text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        {p.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors"
@@ -179,20 +155,6 @@ const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
                   {item.label}
                 </button>
               ))}
-              <div className="pt-2 border-t border-gray-200 dark:border-gray-800">
-                <div className="px-4 py-2 text-xs uppercase tracking-wide text-gray-500">Project Pages</div>
-                {[
-                  { label: 'Codebidder', to: '/projects/codebidder' },
-                  { label: 'HAJI Fitness', to: '/projects/haji-fitness' },
-                  { label: 'Project Anwaya', to: '/projects/project-anwaya' },
-                  { label: 'StudyGenie', to: '/projects/studygenie' },
-                  { label: 'CMD Helper', to: '/projects/cmd-helper' },
-                ].map((p) => (
-                  <Link key={p.to} to={p.to} className="block w-full text-left px-4 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">
-                    {p.label}
-                  </Link>
-                ))}
-              </div>
             </div>
           </motion.div>
         )}

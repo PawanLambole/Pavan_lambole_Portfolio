@@ -1,8 +1,11 @@
-import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Github, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Projects = () => {
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const projects = [
     {
       title: 'Codebidder Platform',
@@ -10,7 +13,14 @@ const Projects = () => {
       tech: ['ASP.NET MVC', 'C#', 'Entity Framework', 'SQL Server'],
       gradient: 'from-indian-saffron to-orange-500',
       github: 'https://github.com/PawanLambole/codebidder',
-      route: '/projects/codebidder'
+      screenshots: [
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/1.png',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/2.png',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/3.png',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/4.png',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/5.png',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/6.png',
+      ]
     },
     {
       title: 'HAJI Fitness Point',
@@ -18,7 +28,15 @@ const Projects = () => {
       tech: ['React Native', 'TypeScript', 'Expo', 'Supabase'],
       gradient: 'from-indian-green to-green-600',
       github: 'https://github.com/PawanLambole/haji-fitness-point',
-      route: '/projects/haji-fitness'
+      screenshots: [
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/1.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/2.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/3.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/4.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/5.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/6.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/7.jpg',
+      ]
     },
     {
       title: 'Project Anwaya',
@@ -26,7 +44,6 @@ const Projects = () => {
       tech: ['Python', 'LSTM', 'MediaPipe', 'TensorFlow', 'OpenCV'],
       gradient: 'from-orange-600 to-indian-saffron',
       github: 'https://github.com/PawanLambole/Project-Anwaya',
-      route: '/projects/project-anwaya'
     },
     {
       title: 'StudyGenie',
@@ -34,7 +51,6 @@ const Projects = () => {
       tech: ['React', 'TypeScript', 'Vite', 'AI/ML'],
       gradient: 'from-indian-green to-emerald-600',
       github: 'https://github.com/PawanLambole/studygenie',
-      route: '/projects/studygenie'
     },
     {
       title: 'CMD Helper',
@@ -42,7 +58,6 @@ const Projects = () => {
       tech: ['Batch Script', 'Windows CMD', 'Shell Scripting'],
       gradient: 'from-blue-600 to-indian-blue',
       github: 'https://github.com/PawanLambole/cmd-helper',
-      route: '/projects/cmd-helper'
     },
     {
       title: 'Student Adda Nashik',
@@ -50,30 +65,28 @@ const Projects = () => {
       tech: ['React Native', 'Firebase', 'JavaScript'],
       gradient: 'from-purple-600 to-pink-600',
       github: 'https://github.com/PawanLambole/Student-Adda-Nashik',
-      route: '/projects/student-adda'
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+  const openProjectDetails = (projectTitle: string) => {
+    setExpandedProject(projectTitle);
+    setCurrentImageIndex(0);
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
+  const closeProjectDetails = () => {
+    setExpandedProject(null);
+    setCurrentImageIndex(0);
   };
 
-  const navigate = useNavigate();
+  const nextImage = (screenshotCount: number) => {
+    setCurrentImageIndex((prev) => (prev + 1) % screenshotCount);
+  };
+
+  const prevImage = (screenshotCount: number) => {
+    setCurrentImageIndex((prev) => (prev - 1 + screenshotCount) % screenshotCount);
+  };
+
+  const expandedProjectData = projects.find(p => p.title === expandedProject);
 
   return (
     <section
@@ -98,17 +111,20 @@ const Projects = () => {
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
+          transition={{ staggerChildren: 0.2 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              onClick={() => project.route && navigate(project.route)}
-              variants={itemVariants}
+              onClick={() => project.screenshots && openProjectDetails(project.title)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
               whileHover={{ 
                 y: -20, 
                 scale: 1.05,
@@ -122,12 +138,12 @@ const Projects = () => {
                   "0 10px 30px rgba(0,0,0,0.1)",
                   "0 15px 40px rgba(0,0,0,0.15)",
                   "0 10px 30px rgba(0,0,0,0.1)"
-                ]
+                ],
+                transition: {
+                  boxShadow: { duration: 3, repeat: Infinity }
+                }
               }}
-              transition={{
-                boxShadow: { duration: 3, repeat: Infinity }
-              }}
-              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 cursor-pointer"
+              className={`bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 ${project.screenshots ? 'cursor-pointer' : ''}`}
             >
               <motion.div 
                 className={`h-2 bg-gradient-to-r ${project.gradient}`}
@@ -225,6 +241,110 @@ const Projects = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Expandable Project Details Modal */}
+        <AnimatePresence>
+          {expandedProject && expandedProjectData?.screenshots && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+              onClick={closeProjectDetails}
+            >
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white dark:bg-gray-800 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8"
+              >
+                <div className="flex justify-between items-start mb-6">
+                  <div>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                      {expandedProjectData.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {expandedProjectData.description}
+                    </p>
+                  </div>
+                  <button
+                    onClick={closeProjectDetails}
+                    className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {expandedProjectData.tech.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Image Gallery */}
+                <div className="relative">
+                  <motion.img
+                    key={currentImageIndex}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    src={expandedProjectData.screenshots[currentImageIndex]}
+                    alt={`${expandedProjectData.title} screenshot ${currentImageIndex + 1}`}
+                    className={`w-full rounded-lg shadow-lg ${expandedProjectData.title === 'HAJI Fitness Point' ? 'max-w-md mx-auto aspect-[9/16] object-cover' : 'object-contain max-h-[500px]'}`}
+                  />
+                  
+                  {expandedProjectData.screenshots.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => prevImage(expandedProjectData.screenshots.length)}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 transition-colors shadow-lg"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button
+                        onClick={() => nextImage(expandedProjectData.screenshots.length)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 transition-colors shadow-lg"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                      <div className="flex justify-center gap-2 mt-4">
+                        {expandedProjectData.screenshots.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setCurrentImageIndex(idx)}
+                            className={`w-2 h-2 rounded-full transition-all ${
+                              idx === currentImageIndex
+                                ? 'bg-indian-saffron w-8'
+                                : 'bg-gray-400 dark:bg-gray-600'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div className="flex gap-4 mt-6">
+                  <a
+                    href={expandedProjectData.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:scale-105 transition-transform font-medium"
+                  >
+                    <Github size={20} />
+                    View on GitHub
+                  </a>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
