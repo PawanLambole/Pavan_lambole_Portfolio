@@ -14,12 +14,13 @@ const Projects = () => {
       gradient: 'from-indian-saffron to-orange-500',
       github: 'https://github.com/PawanLambole/codebidder',
       screenshots: [
-        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/1.png',
-        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/2.png',
-        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/3.png',
-        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/4.png',
-        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/5.png',
-        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/6.png',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/1.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/homepage.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/submitproject.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/viewquotations.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/quotationdetails.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/submitquotation.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/quatationreport.jpg',
       ]
     },
     {
@@ -29,13 +30,13 @@ const Projects = () => {
       gradient: 'from-indian-green to-green-600',
       github: 'https://github.com/PawanLambole/haji-fitness-point',
       screenshots: [
-        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/1.jpg',
-        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/2.jpg',
-        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/3.jpg',
-        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/4.jpg',
-        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/5.jpg',
-        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/6.jpg',
-        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/7.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/splash.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/login.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/dashboard.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/members%20list.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/add%20member.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/edit%20member.jpg',
+        'https://raw.githubusercontent.com/PawanLambole/haji-fitness-point/main/images/profile.jpg',
       ]
     },
     {
