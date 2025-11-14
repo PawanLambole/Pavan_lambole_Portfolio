@@ -11,6 +11,12 @@ import StarBackground from './components/StarBackground';
 import VisitorNameModal from './components/VisitorNameModal';
 import BackgroundMusic from './components/BackgroundMusic';
 import { getVisitorIpAndLocation } from './utils/analytics';
+import { Routes, Route } from 'react-router-dom';
+import Codebidder from './pages/projects/Codebidder';
+import HajiFitness from './pages/projects/HajiFitness';
+import ProjectAnwaya from './pages/projects/ProjectAnwaya';
+import StudyGenie from './pages/projects/StudyGenie';
+import CmdHelper from './pages/projects/CmdHelper';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -79,29 +85,32 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden relative">
-      {/* Visitor Name Modal */}
       <VisitorNameModal onSubmit={handleVisitorName} />
-      
-      {/* Background Music Player */}
       <BackgroundMusic />
-      
-      {/* Site-wide starfield with meteors - theme adaptive */}
-      <StarBackground 
-        position="fixed" 
-        opacity={isDark ? 0.7 : 0.45} 
-        zIndex={5} 
-        blendMode="screen"
-        isDark={isDark}
-      />
+      <StarBackground position="fixed" opacity={isDark ? 0.7 : 0.45} zIndex={5} blendMode="screen" isDark={isDark} />
       <div className="relative">
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-        <Footer />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Experience />
+                <Contact />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="/projects/codebidder" element={<Codebidder />} />
+          <Route path="/projects/haji-fitness" element={<HajiFitness />} />
+          <Route path="/projects/project-anwaya" element={<ProjectAnwaya />} />
+          <Route path="/projects/studygenie" element={<StudyGenie />} />
+          <Route path="/projects/cmd-helper" element={<CmdHelper />} />
+        </Routes>
       </div>
     </div>
   );
