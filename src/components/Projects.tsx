@@ -14,7 +14,6 @@ const Projects = () => {
       gradient: 'from-indian-saffron to-orange-500',
       github: 'https://github.com/PawanLambole/codebidder',
       screenshots: [
-        'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/1.jpg',
         'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/homepage.jpg',
         'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/submitproject.jpg',
         'https://raw.githubusercontent.com/PawanLambole/codebidder/main/images/viewquotations.jpg',
