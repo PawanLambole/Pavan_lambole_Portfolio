@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,15 +8,22 @@ const Footer = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="text-center space-y-4"
         >
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2 flex-wrap">
-            <span>&copy; 2025 Pavan Lambole. All Rights Reserved.</span>
-            <span className="hidden sm:inline">|</span>
-            <span className="flex items-center gap-1">
-              Made with <Heart size={14} className="text-red-500 fill-red-500" /> using React & Tailwind CSS
-            </span>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            &copy; 2025 Pavan Lambole. All Rights Reserved.
           </p>
+          <div className="border-t border-gray-300 dark:border-gray-600 pt-4 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base italic text-gray-700 dark:text-gray-300 font-serif">
+              "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन"
+            </p>
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2">
+              You have the right to perform your duty, but not to the fruits of your actions.
+            </p>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+              — Bhagavad Gita 2.47
+            </p>
+          </div>
         </motion.div>
       </div>
     </footer>
