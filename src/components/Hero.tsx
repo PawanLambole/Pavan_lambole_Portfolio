@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
-import profileImage from '../assets/1000190228.jpg';
+import profileImage from '../assets/My Profile Picture 2.png';
 
 const Hero = () => {
   const scrollToAbout = () => {
